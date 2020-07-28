@@ -1,4 +1,4 @@
-# WebsocketProxy [![GoDoc](https://godoc.org/github.com/koding/websocketproxy?status.svg)](https://godoc.org/github.com/koding/websocketproxy) [![Build Status](https://travis-ci.org/koding/websocketproxy.svg)](https://travis-ci.org/koding/websocketproxy)
+# WebsocketProxy [![GoDoc](https://godoc.org/github.com/simonfrey/websocketproxy?status.svg)](https://godoc.org/github.com/simonfrey/websocketproxy)
 
 WebsocketProxy is an http.Handler interface build on top of
 [gorilla/websocket](https://github.com/gorilla/websocket) that you can plug
@@ -7,7 +7,7 @@ into your existing Go webserver to provide WebSocket reverse proxy.
 ## Install
 
 ```bash
-go get github.com/koding/websocketproxy
+go get github.com/simonfrey/websocketproxy
 ```
 
 ## Example
@@ -22,7 +22,7 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/koding/websocketproxy"
+	"github.com/simonfrey/websocketproxy"
 )
 
 var (
@@ -45,7 +45,7 @@ func main() {
 Save it as `proxy.go` and run as:
 
 ```bash
-go run proxy.go -backend ws://example.com:3000
+go run websocketproxy.go -backend ws://example.com:3000
 ```
 
 Now all incoming WebSocket requests coming to this server will be proxied to
