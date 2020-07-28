@@ -49,12 +49,17 @@ type WebsocketProxy struct {
 
 // ProxyHandler returns a new http.Handler interface that reverse proxies the
 // request to the given target.
-func ProxyHandler(target *url.URL) http.Handler { return NewProxy(target) }
+func ProxyHandler(target *url.URL) http.Handler { return NewProxy(target, false) }
 
 // NewProxy returns a new Websocket reverse proxy that rewrites the
 // URL's to the scheme, host and base path provider in target.
-func NewProxy(target *url.URL) *WebsocketProxy {
+// If doNotRewriteTarget is set to true, the target is completely taken, without rewriting the Fragemen,Path & RawQuery
+func NewProxy(target *url.URL, doNotRewriteTarget bool) *WebsocketProxy {
 	backend := func(r *http.Request) *url.URL {
+		if doNotRewriteTarget {
+			return target
+		}
+
 		// Shallow copy
 		u := *target
 		u.Fragment = r.URL.Fragment
